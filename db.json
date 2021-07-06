@@ -1,0 +1,17 @@
+{
+    "Hospitals":[
+        {
+            "id":1,
+            "district":"kamareddy",
+            "hospital_name":"Govt",
+            "no_of_beds": 100
+        },
+        {
+            "id":2,
+            "district":"kamareddy",
+            "hospital_name":"Private",
+            "no_of_beds": 150
+
+        }
+    ]
+}

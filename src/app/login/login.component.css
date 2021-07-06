@@ -1,0 +1,44 @@
+.maindiv
+{
+   background-image: url(/assets/login_bg.jpg);
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+}
+.container
+{
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 2px 2px 2px 2px gray;
+}
+h6
+{
+    color: gray;    
+}
+#facebookBtn
+{
+    margin-left: 150px;
+}
+#googleBtn
+{
+    margin-left: 100px;
+}
+img
+{
+    position: relative;
+    top:-50px;    
+} 
+input
+{
+    border: none;
+    border-bottom: 1px solid black;
+}
+label
+{
+    font-size: 17px;
+}
+h1
+{
+    color: rgb(255,122,33);
+    font-family: 'Fira Sans', sans-serif;
+}

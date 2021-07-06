@@ -1,0 +1,32 @@
+.maindiv
+{
+   background-image: url(/assets/login_bg.jpg);
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+}
+input
+{
+    border: none;
+    border-bottom: 1px solid black;
+}
+.container
+{
+    box-shadow: 2px 2px 2px 2px gray;
+    border-radius: 30px;
+    background-color: white;
+}
+img
+{
+    position: relative;
+    top:-50px;    
+} 
+label
+{
+    font-size: 17px;
+}
+#register
+{
+    color: tomato;
+    font-family: 'Fira Sans', sans-serif;
+}
