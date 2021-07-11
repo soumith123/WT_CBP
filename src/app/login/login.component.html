@@ -10,12 +10,28 @@
                 <h1 class="text-center mt-0 mb-4" id="register"><i class="fas fa-sign-in-alt mt-0 me-2"></i>Login Form</h1>
 
                 <!-- Form inside register page -->
-                <form>
-                    <label for="un" class="form-label"><i class="fas fa-user-plus me-2"></i>Username</label>
-                    <input type="text" class="form-control" name="username" id="un" placeholder="Enter Username...">
+                <form #ref="ngForm" (ngSubmit)="onLogin(ref.value)">
 
-                    <label for="email" class="form-label mt-3"><i class="fas fa-envelope me-2"></i>Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email...">
+                    <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="user" ngModel checked>
+                        <label class="form-check-label " for="flexRadioDefault1">
+                          User
+                        </label>
+                      </div> 
+    
+                      <!-- admin radio -->
+                       <div class="form-check form-check-inline mb-3">
+                        <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="admin" ngModel>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Admin
+                        </label>
+                      </div><br>
+    
+                    <label for="un" class="form-label"><i class="fas fa-user-plus me-2"></i>Username</label>
+                    <input type="text" class="form-control" name="username" id="un" placeholder="Enter Username..." ngModel>
+
+                    <label for="password" class="form-label mt-3"><i class="fas fa-envelope me-2"></i>Passowrd</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Enter Email..." ngModel>
 
                     <button type="submit" class="btn btn-success d-block mx-auto mt-5 mb-5"><i class="fas fa-plus-circle ms-0 me-1"></i>Login</button>
                 </form>

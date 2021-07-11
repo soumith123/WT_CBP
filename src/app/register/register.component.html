@@ -10,18 +10,21 @@
                 <h1 class="text-center mt-0 mb-4" id="register"><i class="fas fa-sign-in-alt me-2"></i>Registration Form</h1>
 
         <!-- Form inside register page -->
-                <form>
+                <form #ref="ngForm" (ngSubmit)="onSignUp(ref.value)">
                     <label for="un" class="form-label"><i class="fas fa-user-plus me-2"></i>Username</label>
-                    <input type="text" class="form-control" name="username" id="un" placeholder="Enter Username...">
+                    <input type="text" class="form-control" name="username" id="un" placeholder="Enter Username..." ngModel>
 
                     <label for="email" class="form-label mt-3"><i class="fas fa-envelope me-2"></i>Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email...">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email..." ngModel>
 
                     <label for="pw" class="form-label mt-3"><i class="fas fa-lock me-2"></i>Password</label>
-                    <input type="password" class="form-control" name="password" id="pw" placeholder="Enter Password...">
+                    <input type="password" class="form-control" name="password" id="pw" placeholder="Enter Password..." ngModel>
 
                     <label for="dob" class="form-label mt-3"><i class="fas fa-calendar-alt me-2"></i>Date Of Birth</label>
-                    <input type="date" class="form-control" name="dob" id="dob">
+                    <input type="date" class="form-control" name="dob" id="dob" ngModel>
+
+                    <input type="file" name="photo" class="mt-3 mb-3" ngModel (change)="selectFile($event)">
+
 
                     <button type="submit" class="btn btn-primary d-block mx-auto mt-3 mb-4"><i class="fas fa-plus-circle me-2"></i>Register</button>
                 </form>

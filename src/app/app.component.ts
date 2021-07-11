@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CovidHospitalManagement';
+
+
+  constructor(public us:UsersService) {}
+
+  userLogout()
+  {
+    localStorage.clear();
+    this.us.userLoginStatus=false;
+  }
 }

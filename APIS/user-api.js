@@ -10,6 +10,9 @@ userApi.use(exp.json())
 //importing mongodb and MongoClient
 const mc=require("mongodb").MongoClient;
 
+// to secure sensitive data
+require("dotenv").config()
+
 // to handle asynchronous error
 const errorHandler=require("express-async-handler")
 
@@ -19,32 +22,18 @@ const bcryptjs=require("bcryptjs")
 // to assign token
 const jwt=require("jsonwebtoken")
 
-// const databaseUrl="mongodb+srv://soumith:soumith123@cluster0.vlkyk.mongodb.net/MyFirstdb?retryWrites=true&w=majority"
+const checkToken=require("./middlewares/verifyToken")
 
-const databaseUrl="mongodb://soumith:soumith123@cluster0-shard-00-00.vlkyk.mongodb.net:27017,cluster0-shard-00-01.vlkyk.mongodb.net:27017,cluster0-shard-00-02.vlkyk.mongodb.net:27017/MyFirstdb?ssl=true&replicaSet=atlas-14ai65-shard-0&authSource=admin&retryWrites=true&w=majority"
+const multerObj=require("./middlewares/multerCloudinary")
 
-let databaseObj;
 
-let userCollectionObj;  
 
-// connecting to databse
-mc.connect(databaseUrl,{ useNewUrlParser:true, useUnifiedTopology: true },(err,client)=>
-{
-    if(err)
-    {
-        console.log("Error in connecting database is", err)
-    }
-    else
-    {
-        let databaseObj=client.db("covidHospitalManagement")
-        userCollectionObj=databaseObj.collection("userCollection")
-        console.log("Connected to database....")
-    }
-})
+
 
 // GET users using async & await
 userApi.get("/getusers", errorHandler(async(req,res) =>
 {
+    let userCollectionObj=req.app.get("userCollectionObj")
     let user=req.body;
     let users= await userCollectionObj.find().toArray();
     if (users == null)
@@ -62,6 +51,7 @@ userApi.get("/getusers", errorHandler(async(req,res) =>
 // GET user by id using async & await
 userApi.get("/getuser/:username", errorHandler(async(req, res) => 
 {
+    let userCollectionObj=req.app.get("userCollectionObj")
     let user=req.params.username;
     let userObj= await userCollectionObj.findOne({username:user});
     if(userObj===null)
@@ -76,18 +66,19 @@ userApi.get("/getuser/:username", errorHandler(async(req, res) =>
 
 
 
-
-
 // POST using async & await
-userApi.post("/createuser", errorHandler(async(req,res) =>
+userApi.post("/createuser", multerObj.single("photo"),errorHandler(async(req,res) =>
 {
-    let newUser=req.body;
+    let userCollectionObj=req.app.get("userCollectionObj")
+    let newUser=JSON.parse(req.body.userObj);
     let user=await userCollectionObj.findOne({username:newUser.username})
 
     if (user===null)
     {
         let hashedPassword=await bcryptjs.hash(newUser.password,7)
         newUser.password=hashedPassword;
+        newUser.profileImage=req.file.path;  
+        delete newUser.photo;
         await userCollectionObj.insertOne(newUser)
         res.send({message:"New user created"})
     }
@@ -99,11 +90,10 @@ userApi.post("/createuser", errorHandler(async(req,res) =>
 
 
 
-
-
 // UPDATE using async & await
 userApi.put("/updateuser/:username", errorHandler(async(req,res) =>
 {
+    let userCollectionObj=req.app.get("userCollectionObj")
     let modifiedUser=req.body;
     let product=await userCollectionObj.findOne({username:modifiedUser.username})
     if(product == null)
@@ -121,10 +111,10 @@ userApi.put("/updateuser/:username", errorHandler(async(req,res) =>
 
 
 
-
 // DELETE using async & await
 userApi.delete("/deleteuser/:username", errorHandler(async(req,res) =>
 {
+    let userCollectionObj=req.app.get("userCollectionObj")
     let deletedUser=req.params.username;
     let user= await userCollectionObj.findOne({username:deletedUser})
     if(user == null)
@@ -142,6 +132,8 @@ userApi.delete("/deleteuser/:username", errorHandler(async(req,res) =>
 // User Login
 userApi.post("/login", errorHandler(async (req,res)=>
 {
+    let userCollectionObj=req.app.get("userCollectionObj")
+    
     let credentials=req.body;
 
     let user = await userCollectionObj.findOne({username:credentials.username})
@@ -160,11 +152,17 @@ userApi.post("/login", errorHandler(async (req,res)=>
         }
         else
         {
-            let signedToken=jwt.sign({username:credentials.username}, 'abcdef', {expiresIn: 120})
-            res.send({message:"login success" , token:signedToken, username:credentials.username})
+            let signedToken=jwt.sign({username:credentials.username},process.env.SECRET, {expiresIn: 10})
+            res.send({message:"login success" , token:signedToken, username:credentials.username, userObj:user})
         }
     }
 }))
+
+
+userApi.get("/testing", checkToken, (req,res) =>
+{
+    res.send({message:"this is protected data"})
+})
 
 
 module.exports=userApi;
