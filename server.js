@@ -39,6 +39,9 @@ mc.connect(databaseUrl,{ useNewUrlParser:true, useUnifiedTopology: true },(err,c
         let adminCollectionObj=databaseObj.collection("adminCollection")
         app.set("adminCollectionObj", adminCollectionObj)
 
+        let hospitalCollectionObj=databaseObj.collection("hospitalCollection")
+        app.set("hospitalCollectionObj", hospitalCollectionObj)
+
         console.log("Connected to database....")
     }
 })
@@ -48,11 +51,13 @@ mc.connect(databaseUrl,{ useNewUrlParser:true, useUnifiedTopology: true },(err,c
 // importing apis 
 const userApi=require("./APIS/user-api")
 const adminApi=require("./APIS/admin-api")
+const hospitalApi=require("./APIS/hospital-api")
 
 
 // executing specific api based on path
 app.use("/user",userApi)
 app.use("/admin",adminApi)
+app.use("/hospital", hospitalApi)
 
 userApi.use(exp.json());
 

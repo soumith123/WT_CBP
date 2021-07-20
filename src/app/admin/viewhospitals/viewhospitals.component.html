@@ -1,0 +1,65 @@
+<div class="maindiv">
+
+    <input type="text" name="title" placeholder="Search game by its name" class="form-control mt-4 mb-3"
+    [(ngModel)]= "searchTerm" id="searchInput">
+
+
+    <form #ref="ngForm">
+
+        <table class="table text-center table-striped table-bordered mt-3">
+            <thead>
+                <th class="pb-3 pt-2">ID</th>
+                <th class="pb-3 pt-2">Hospital Name</th>
+                <th class="pb-3 pt-2">Rating</th>
+                <th class="pb-3 pt-2">Cost/Day</th>
+                <th class="pb-3 pt-2">Contact</th>
+                <th class="pb-3 pt-2">Location</th>
+                <th class="pb-3 pt-2">Picture</th>
+            </thead>
+
+            <tbody>
+
+                <tr *ngFor="let hospital of hospitals | search:searchTerm">
+                    <td>
+                        {{hospital.id}}
+                    </td>
+
+                    <td id="hospitalTitle">
+                        {{hospital.hospitalName}}
+                    </td>
+
+                    <td>
+                        {{hospital.rating}}
+                    </td>
+
+                    <td>
+                        {{hospital.hospitalPrice}}
+                    </td>
+
+                    <td>
+                        {{hospital.contactNumber}}
+                    </td>
+
+                    <td>
+                        {{hospital.hospitalArea}}
+                    </td>
+
+                    <td>
+                        <img src={{hospital.profileImage}} width="300px">
+                    </td>
+
+                    <!-- Game Info button -->
+                    <button class="btn btn-primary btn-sm bg-primary mt-2" (click)="onSelectGame(hospital.hospitalName)"><i class="fas fa-info-circle"></i></button>
+
+                    <!-- Delete button -->
+                    <button class="btn btn-light btn-sm bg-danger mt-2" (click)="onDeleteHospital(hospital)"><i class="fas fa-trash-alt text-white"></i></button>
+
+                    <!-- Edit button -->
+                    <button class="btn btn-sm btn-success bg-success mt-2" type="submit"><i class="fas fa-edit text-white"></i></button> 
+
+
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

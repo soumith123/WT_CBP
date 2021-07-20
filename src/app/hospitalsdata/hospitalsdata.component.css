@@ -1,0 +1,42 @@
+.card
+{
+    border-radius: 20px;
+    margin-top: 15px;
+}
+#image
+{
+    border-radius: 0px;
+}
+#hospitalTitle
+{
+    color:coral;
+    font-weight: bold;
+    font-family: 'Merriweather Sans', sans-serif;
+    font-size: 35px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#textCard
+{
+    background-color:antiquewhite ;
+}
+.maindiv
+{
+    background-color:antiquewhite ;
+}
+
+.head
+{
+    font-family: 'STIX Two Math', serif;
+}
+.address
+{
+    font-family: 'Merienda', cursive;
+}
+.detailsHead
+{
+    font-family: 'Otomanopee One', sans-serif;
+    color: aqua;
+    font-size: 32px;
+}

@@ -90,6 +90,7 @@ userApi.post("/createuser", multerObj.single("photo"),errorHandler(async(req,res
 
 
 
+
 // UPDATE using async & await
 userApi.put("/updateuser/:username", errorHandler(async(req,res) =>
 {

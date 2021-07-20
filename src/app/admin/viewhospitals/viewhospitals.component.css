@@ -1,0 +1,19 @@
+th
+{
+    color: brown;
+}
+
+#hospitalTitle
+{
+    color: black;
+    font-weight: bold;
+}
+td
+{
+    font-style: italic;
+}
+
+.table
+{
+    background-color: rgb(223, 222, 222);
+}

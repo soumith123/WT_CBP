@@ -19,7 +19,7 @@ adminApi.post("/login", errorHandler(async(req,res,next)=>
     let credentials=req.body;
     if(req.body.username!=="covid")
     {
-        res.send({message:process.env.ADMIN_USERNAME})
+        res.send({message:"Invalid username"})
     }
     else if (req.body.password!==process.env.ADMIN_PASSWORD)
     {

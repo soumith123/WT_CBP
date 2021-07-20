@@ -1,0 +1,60 @@
+<div class="maindiv">
+
+    <div class="container border border-white w-75 mt-4 mb-3">
+  
+  
+      <h1 class="text-center mt-2"><i class="fas fa-external-link-square-alt me-2"></i>Upload Hospital</h1>
+      <div class="row mt-4">
+          <div class="col-sm-2 col-md-1"></div>
+          <div class="col-sm-8 col-md-10">
+  
+            <!-- Form to submit data to creating hospital -->
+            <form #ref="ngForm" (ngSubmit)="onDSubmitHospital(ref.value)">
+                
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="id" name="id" ngModel>
+                <label for="id">ID</label>
+              </div>
+            
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="hospitalName" name="hospitalName" ngModel>
+                <label for="hospitalName">Hospital Name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="rating" name="rating" ngModel>
+                <label for="rating">Rating</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="contactNumber" name="contactNumber" ngModel>
+                <label for="contactNumber">Contact Number</label>
+              </div>
+
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="hospitalPrice" name="hospitalPrice" ngModel>
+                <label for="hospitalPrice">Hospital Price per day</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="hospitalArea" name="hospitalArea" ngModel>
+                <label for="hospitalArea">Hospital Area</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="hospitalLocation" name="hospitalLocation" ngModel>
+                <label for="hospitalLocation">Hospital Location</label>
+              </div>
+
+              <input type="file" name="photo" class="form-control mt-3 mb-3" ngModel (change)="selectFile($event)"> 
+  
+  
+              <button class="btn btn-success float-end text-white mb-2" type="submit">
+                    <i class="fas fa-plus-circle me-2"></i>Add</button>
+            </form>
+          </div>
+          <div class="col-sm-2 col-md-1"></div>
+      </div>
+    </div>
+  </div>

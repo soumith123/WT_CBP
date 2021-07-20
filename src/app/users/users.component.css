@@ -1,0 +1,41 @@
+img
+{
+    border-radius: 50%;
+}
+
+a
+{
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+a:hover
+{
+    color: tomato;
+    background-color: white;
+    border-radius: 20px;
+}
+
+/* active nav item styles*/
+.active.nav-link
+{
+    color: white;
+    background-color: tomato;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+li
+{
+    list-style: inside;
+}
+
+h3
+{
+    color: rgb(245, 11, 58);
+    font-family: 'Mukta', sans-serif;
+}
+.container
+{
+    border-radius: 20px;
+    background-color: blanchedalmond;
+}

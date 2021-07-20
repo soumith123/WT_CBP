@@ -10,17 +10,39 @@
                 <h1 class="text-center mt-0 mb-4" id="register"><i class="fas fa-sign-in-alt me-2"></i>Registration Form</h1>
 
         <!-- Form inside register page -->
-                <form #ref="ngForm" (ngSubmit)="onSignUp(ref.value)">
-                    <label for="un" class="form-label"><i class="fas fa-user-plus me-2"></i>Username</label>
-                    <input type="text" class="form-control" name="username" id="un" placeholder="Enter Username..." ngModel>
+                <form #ref="ngForm" (ngSubmit)="ref.form.valid && onSignUp(ref.value)">
+                    <label for="un" class="form-label"><i class="fas fa-user-plus text-primary me-2"></i>Username</label>
+                    <input type="text" class="form-control" name="username" id="un" placeholder="Enter Username..."
+                     ngModel required minlength="4" #refUsername="ngModel" autocomplete="off">
 
-                    <label for="email" class="form-label mt-3"><i class="fas fa-envelope me-2"></i>Email</label>
-                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email..." ngModel>
+                     <!-- giving code to generate message if user enters wrong details -->
+                    <p class="text-warning" *ngIf="(ref.submitted || refUsername.touched) && refUsername.errors?.required">
+                        *Username is required
+                    </p>
 
-                    <label for="pw" class="form-label mt-3"><i class="fas fa-lock me-2"></i>Password</label>
-                    <input type="password" class="form-control" name="password" id="pw" placeholder="Enter Password..." ngModel>
+                    <!-- generating error if user enters charecters less thsn 4 -->
+                    <p class="text-warning" *ngIf="(ref.submitted || refUsername.touched) && refUsername.errors?.minlength">
+                        *Minimum length of Username  is 4 charecters
+                    </p>
 
-                    <label for="dob" class="form-label mt-3"><i class="fas fa-calendar-alt me-2"></i>Date Of Birth</label>
+                    <label for="email" class="form-label mt-3"><i class="fas fa-envelope text-danger me-2"></i>Email</label>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email..." autocomplete="off" ngModel >
+
+                    <label for="pw" class="form-label mt-3"><i class="fas fa-lock text-warning me-2"></i>Password</label>
+                    <input type="password" class="form-control" name="password" id="pw" placeholder="Enter Password..."
+                     ngModel required pattern="\d\d\d-\d\d" #refPassword="ngModel">
+
+                     <!-- giving code to generate message if user enters wrong details -->
+                    <p class="text-warning" *ngIf="(ref.submitted || refPassword.touched) && refPassword.errors?.required">
+                        *Password is required
+                    </p>
+
+                    <!-- generating error if user enters wrong pattern -->
+                    <p class="text-warning" *ngIf="(ref.submitted || refPassword.touched) && refPassword.errors?.pattern">
+                        *pattern is incorrcet (3 digits-2 digits Ex-> 123-12 )
+                    </p>
+
+                    <label for="dob" class="form-label mt-3"><i class="fas fa-calendar-alt text-info me-2"></i>Date Of Birth</label>
                     <input type="date" class="form-control" name="dob" id="dob" ngModel>
 
                     <input type="file" name="photo" class="mt-3 mb-3" ngModel (change)="selectFile($event)">

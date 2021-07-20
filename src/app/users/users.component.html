@@ -1,8 +1,19 @@
-<p>users works!</p>
+<h4 class="text-end text-white"><i class="fas fa-user-circle text-warning me-2"></i>Welcome, <span>{{userObj.username}} 
+    <img src={{userObj.profileImage}} width="100px">
+</span></h4>
 
-<h1>UserName: {{userObj.username}}</h1>
+<div class="container bg-white pb-5 text-center">
 
-<img src={{userObj.profileImage}} width="200px">
+    
+    <h3 class="pt-5">Click here to see your virus status</h3><br>
+        
+    <button class="btn btn-primary d-block mx-auto mb-4" (click)="onSelectYes(userObj.username)"><i class="fas fa-virus me-2"></i>Check Virus status</button>
+    <hr>
+        
 
-
-<button class="btn" (click)="getPrivateData()">Private</button>
+    
+    <h3 class="pt-5"> Click here to see available hospital in your location</h3> <br>
+        
+    <button class="btn btn-success d-block mx-auto" (click)="onSelectNo(userObj.username)"><i class="fas fa-hospital-symbol me-2"></i>Hospitals</button>
+        
+</div>

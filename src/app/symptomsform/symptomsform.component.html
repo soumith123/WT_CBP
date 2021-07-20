@@ -1,0 +1,32 @@
+<h2 class="text-center selectHead mb-3 mt-3"><i class="fas fa-check-circle text-warning me-2"></i>Select your symptoms</h2>
+
+<!-- accessing details from children -->
+
+<div *ngFor="let obj of symptoms">
+    <app-symptomsformchildren [symptomObj]=obj  (myEvent)=symptomDetails($event)></app-symptomsformchildren>
+</div>
+
+<!-- showing number of symptoms, selected symptoms -->
+
+<div class="maindiv bg-white mt-3 ">
+
+    <h5 class="text-center pb-3" id="NoOfSymptoms">Number of symptoms: {{symptomCount}}</h5>
+
+    <span style="font-size: 20px;" id="symptomsHead"><i class="fas fa-viruses text-danger"></i>Your Symptoms: </span>
+    <span *ngFor="let name of symptomsSentByChild" class="text-center" style="font-size: 20px;">{{name}} , </span>
+
+</div>
+
+<!-- showing home quarantized or hospitalized -->
+
+<div class="maindiv bg-white text-center">
+
+    <h5 *ngIf="symptomCount>=3" class="pt-4 pb-3">
+        You have higher covid symptoms...We choose you to prefer Hospital <i class="fas fa-sad-tear me-2"></i><br>
+        <button class="btn btn-success mt-2 mb-3" (click)="hospitals(userObj.username)"><i class="fas fa-hospital-symbol me-2"></i>Hospitals</button>
+    </h5>
+
+    <h5 *ngIf="symptomCount<3" class="pt-4 pb-3">
+        You have less symptoms..You can take treatment at home <i class="fas fa-smile-beam"></i>
+    </h5>
+</div>

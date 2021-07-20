@@ -1,0 +1,21 @@
+a
+{
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
+a:hover
+{
+    color: tomato;
+    background-color: white;
+    border-radius: 20px;
+}
+
+/* active nav item styles*/
+.active.nav-link
+{
+    color: white;
+    background-color: tomato;
+    border-radius: 20px;
+}
+
