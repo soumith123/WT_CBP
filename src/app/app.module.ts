@@ -15,7 +15,6 @@ import { HospitalsdataComponent } from './hospitalsdata/hospitalsdata.component'
 import { SearchPipe } from './search.pipe';
 import { SharedModule } from './shared/shared.module';
 import { SymptomsformComponent } from './symptomsform/symptomsform.component';
-import { Spo2Component } from './spo2/spo2.component';
 import { SymptomsformchildrenComponent } from './symptomsformchildren/symptomsformchildren.component';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { SymptomsformchildrenComponent } from './symptomsformchildren/symptomsfo
     HospitalsComponent,
     HospitalsdataComponent,
     SymptomsformComponent,
-    Spo2Component,
     SymptomsformchildrenComponent,
   ],
   imports: [

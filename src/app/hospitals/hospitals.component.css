@@ -2,9 +2,9 @@ input
 {
     border-radius: 20px;
 }
-#gameTitle
+#hospitalTitle
 {
-    color: tomato;
+    color: rgb(204, 22, 22);
     font-family: 'Merriweather', serif;
 }
 .card:hover
@@ -24,4 +24,9 @@ input
 .card-body
 {
     background-color: rgb(252, 252, 252);
+}
+
+h5
+{
+    color: tomato;
 }

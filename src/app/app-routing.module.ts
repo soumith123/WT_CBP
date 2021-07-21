@@ -6,7 +6,6 @@ import { HospitalsdataComponent } from './hospitalsdata/hospitalsdata.component'
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegisterComponent } from './register/register.component';
-import { Spo2Component } from './spo2/spo2.component';
 import { SymptomsformComponent } from './symptomsform/symptomsform.component';
 import { UsersComponent } from './users/users.component';
 
@@ -16,7 +15,6 @@ const routes: Routes = [
   {path:"hospitals", component:HospitalsComponent},
   {path:"users/symptomsForm/:username", component:SymptomsformComponent},
   {path:"hospitalsData/:username", component:HospitalsComponent},
-  {path:"spo2", component:Spo2Component},
   {path:"users/:username", component:UsersComponent},
   {path:"hospitals/:hospitalName", component:HospitalsdataComponent},
   {path:'', redirectTo:'/login', pathMatch:'full'},
